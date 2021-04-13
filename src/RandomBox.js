@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Animated, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, Animated, TouchableOpacity, Easing } from 'react-native'
 
 export default class RandomBox extends Component {
     constructor(props) {
@@ -11,9 +11,10 @@ export default class RandomBox extends Component {
 
     _handleRandom = () => {
         Animated.parallel([
-            Animated.spring(this.state.position.x, {
+            Animated.timing(this.state.position.x, {
                 toValue: Math.floor(Math.random() * 201) - 100,
                 speed: 1,
+                easing: Easing.in,
                 useNativeDriver: true
             }),
             Animated.spring(this.state.position.y, {
